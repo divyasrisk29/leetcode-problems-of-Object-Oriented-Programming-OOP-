@@ -1,0 +1,27 @@
+class RLEIterator(object):
+
+    def __init__(self, run_length_encoding):
+       
+        self.encoding = run_length_encoding
+      
+        self.current_index = 0
+
+    def next(self, remaining_to_consume):
+      
+        while (
+            self.current_index < len(self.encoding)
+            and remaining_to_consume > self.encoding[self.current_index]
+        ):
+            remaining_to_consume -= self.encoding[self.current_index]
+           
+            self.current_index += 2
+
+       
+        if self.current_index >= len(self.encoding):
+            return -1
+
+       
+        self.encoding[self.current_index] -= remaining_to_consume
+        
+       
+        return self.encoding[self.current_index + 1]
