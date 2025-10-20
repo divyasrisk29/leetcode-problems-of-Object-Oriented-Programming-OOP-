@@ -1,0 +1,17 @@
+class NumArray(object):
+
+    def __init__(self, nums):
+        
+        self.prefix = []
+        sum = 0
+        for n in nums:
+            sum += n
+            self.prefix.append(sum)
+
+    def sumRange(self, left, right):
+       
+        if left == 0:
+            return self.prefix[right]
+        else:
+            return self.prefix[right] - self.prefix[left-1]
+
